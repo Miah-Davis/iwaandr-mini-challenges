@@ -107,8 +107,8 @@ function App() {
               </Typography>
               <Typography paragraph component="div">
                 This should only take ~3 hours of time. Each page (using the
-                tabs above) has it's own description as well. Make your changes
-                in the code to meet the tab's description.
+                tabs above) has its own description as well. Make your changes
+                in the code to meet achieve the challenge's goals.
               </Typography>
               <Typography paragraph component="div">
                 Here are some final considerations:
@@ -144,10 +144,9 @@ function App() {
                     <b>Making changes:</b>
                     <ol>
                       <li>
-                        <b>Read the instructions.</b> Navigate to the tab while
-                        the app is being served. Each tab will have its own set
-                        of instructions that provide the details of the
-                        exercises.
+                        <b>Read the goals.</b> Navigate to the tab while the app
+                        is being served. Each tab will have its own set of goals
+                        that provide desired outcome of the challenge.
                       </li>
                       <li>
                         <b>Find the exercise file.</b> Each exercise has a file
