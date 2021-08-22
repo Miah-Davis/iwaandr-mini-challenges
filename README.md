@@ -1,6 +1,6 @@
 # iWaandr Take Home Project
 
-Thank you for continuing the process of being hired for iWaandr! This is a small project that is meant to give you a chance to exercise a few different skillsets.
+Thank you for continuing the iWaandr interview project! This is a small project that is meant to give you a chance to exercise a few different skill sets.
 
 ## Running the project
 
