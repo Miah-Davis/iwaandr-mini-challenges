@@ -1,7 +1,8 @@
 import React from "react";
 import { Grid, Typography, Paper } from "@material-ui/core";
 import { useState } from "react";
-import { useRef } from "react";
+
+/*Commented out code retained for reference*/
 
 /// -------------------- Begin Exercise Code -------------------- ///
 /// Code in this block (ended by the similar comment several lines below),
@@ -10,26 +11,33 @@ import { useRef } from "react";
 interface AppProps {}
 
 interface TodoInterface {
-  id: number;
+  id: number; //make string?
   body: string;
   isComplete?: boolean;
-}
+  }
 
+let counter = 0;
 const App: React.FC<AppProps> = () => {
-  const defaults = [
-    {
-      id: 0,
-      body: "I am the body of a default todo.",
-    },
-    {
-      id: 1,
-      body: "I am the body of a complete todo",
-      isComplete: true,
-    },
-  ];
-  const counter = useRef(defaults.length);
-  const [todos, setTodos] = useState<TodoInterface[]>(defaults);
+  //Perhaps append to "defaults" array after empty?
+  // reset defaults to empty (array?)
+  
+  let todoList : Array<TodoInterface> = [];
+  
+  
+  const [todos, setTodos] = useState<TodoInterface[]>(todoList);
   const [input, setInput] = useState("");
+  
+  // const [state, setState] = useState({isComplete:false});
+
+  // Create input handler to handle state to textbox
+  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const enteredTodo = event.target.value;
+    setInput(enteredTodo);
+  }
+  //Create handler to set state on toggle
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setTodos((prev) => [...prev])
+  };
 
   return (
     <div
@@ -38,50 +46,58 @@ const App: React.FC<AppProps> = () => {
       <div
         style={{ display: "flex", justifyContent: "center", marginBottom: 50 }}
       >
-        <input type="text" placeholder="Add a todo!" value={input} />
+        <input type="text" placeholder="Add a todo!" value={input} onChange={inputHandler} />
         <button
           onClick={() => {
-            setTodos((prev) => [...prev, { body: input, id: counter.current }]);
-            setInput("");
-          }}
+            if(input.length > 0){
+            setTodos((prev) => [...prev, { body: input, id: counter++ }]);
+             setInput("");
+            }
+          }
+          }
         >
           Submit Todo
         </button>
       </div>
       {todos.map((todo) => (
-        <div
-          style={{
-            border: todo.isComplete ? "1px solid darkgreen" : "1px solid grey",
-            display: "flex",
-            padding: 5,
-            width: 500,
-            justifyContent: "space-between",
-            alignItems: "center",
-            backgroundColor: todo.isComplete ? "green" : "initial",
-            color: todo.isComplete ? "white" : "initial",
-          }}
-        >
-          <p style={{ textOverflow: "wrap", maxWidth: "75%" }}>{todo.body}</p>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div>
-              <label
-                id={`${todo.body}-label`}
-                htmlFor={`${todo.body}-checkbox`}
-              >
-                Complete
-              </label>
+         <div
+         style={{
+           border: todo.isComplete ? "1px solid darkgreen" : "1px solid grey",
+           display: "flex",
+           padding: 5,
+           width: 500,
+           justifyContent: "space-between",
+           alignItems: "center",
+           backgroundColor: todo.isComplete ? "green" : "initial",
+           color: todo.isComplete ? "white" : "initial",
+         }}
+       >
+         <p style={{ textOverflow: "wrap", maxWidth: "75%" }}>{todo.body}</p>
+         <div style={{ display: "flex", flexDirection: "column" }}>
+           <div>
+             <label
+               id={`${todo.body}-label`}
+               htmlFor={`${todo.body}-checkbox`}
+             >
+               Complete
+             </label>
+              {/* Add fix here(refresh state) */}
               <input
                 id={`${todo.body}-checkbox`}
                 type="checkbox"
-                checked={todo.isComplete}
-                onClick={() => {
+                checked={todo.isComplete} 
+                onClick={()=>{
                   todo.isComplete = true;
                 }}
+                onChange = {handleChange}
               />
             </div>
             <button
               onClick={() => {
-                setTodos(todos.filter(({ id }) => id === todo.id));
+                // alter logic to target todo id/body
+
+                 setTodos(todos.filter(({ id }) => id !== todo.id));
+                 console.log(todos)
               }}
             >
               Delete

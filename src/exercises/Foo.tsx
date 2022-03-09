@@ -1,15 +1,31 @@
 import React from "react";
 import { Grid, Typography, Paper, Button } from "@material-ui/core";
 
+/*Commented out code retained for reference*/
+
 /// -------------------- Begin Exercise Code -------------------- ///
 /// Code in this block (ended by the similar comment several lines below),
 /// are relevant to the excerise. You can ignore all other code
 
 function fooBarBaz(count = 30) {
   for (let i = 1; i <= count; i++) {
-    console.log(i);
-  }
-}
+    if( i % 3 === 0 && i % 5 === 0){
+          console.log("Baz")
+    }
+      else if (i % 3 === 0 ){
+      console.log("Foo")
+      }
+    else if (i % 5 === 0){
+      console.log("Bar")
+    }
+    //Covered problem occuring between numbers 5 and 6. 
+    //  if (i % 6 === 0){
+    //    console.log("Foo")
+    //    i = i+1
+    //  }
+    else{console.log(i);}
+   }
+};
 
 /// -------------------- End Exercise Code -------------------- ///
 
